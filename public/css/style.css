@@ -1071,6 +1071,23 @@ ul.sub_navigation li {
 
 /* Logo */
 
+.copyright {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -10;
+    padding: 25px;
+}
+
+.copyright a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #95a1aa;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
 .logo-enpi {
     position: absolute;
     bottom: 0;
