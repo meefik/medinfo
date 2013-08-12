@@ -292,7 +292,7 @@ window.GUI = {
 
         if (session.call && session.call.status !== JsSIP.C.SESSION_TERMINATED) {
             button_hangup.click(function () {
-                GUI.setCallSessionStatus(session, "terminated", "terminated");
+                GUI.setCallSessionStatus(session, "terminated");
                 session.call.terminate();
                 GUI.removeSession(session, 500);
             });
@@ -314,7 +314,7 @@ window.GUI = {
             case "trying":
                 call.removeClass();
                 call.addClass("call trying");
-                status_text.text(description || "trying...");
+                status_text.text(description || "набор номера...");
 
                 box_hide();
                 break;
@@ -322,7 +322,7 @@ window.GUI = {
             case "in-progress":
                 call.removeClass();
                 call.addClass("call in-progress");
-                status_text.text(description || "in progress...");
+                status_text.text(description || "идет вызов...");
 
                 // ring-back.
                 soundPlayer.setAttribute("src", "sounds/outgoing-call2.ogg");
@@ -342,7 +342,7 @@ window.GUI = {
 
                 call.removeClass();
                 call.addClass("call answered");
-                status_text.text(description || "answered");
+                status_text.text(description || "вызов принят");
                 button_dtmf.click(function () {
                     forward_box.hide();
                     dtmf_box.toggle();
@@ -388,7 +388,7 @@ window.GUI = {
                 }
                 call.removeClass();
                 call.addClass("call terminated");
-                status_text.text(description || "terminated");
+                status_text.text(description || "вызов завершен");
                 button_hangup.unbind("click");
 
                 box_hide();
@@ -397,7 +397,7 @@ window.GUI = {
             case "incoming":
                 call.removeClass();
                 call.addClass("call incoming");
-                status_text.text("incoming call...");
+                status_text.text(description || "входящий вызов...");
                 soundPlayer.setAttribute("src", "sounds/incoming-call2.ogg");
                 soundPlayer.play();
 
