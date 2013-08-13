@@ -6,11 +6,11 @@
     <title>MedInfo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/ui-theme/jquery-ui-1.10.3.custom.css" type="text/css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png"/>
-    <script src="js/jquery-1.9.1.js" type="text/javascript"></script>
-    <script src="js/jquery-ui-1.10.3.js" type="text/javascript"></script>
-    <script src="js/parseuri.js" type="text/javascript"></script>
+    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
     <script src="js/init.js" type="text/javascript"></script>
     <script src="js/gui.js" type="text/javascript"></script>
     <script src="js/jssip-devel.js" type="text/javascript"></script>
@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<div id="phone">
+<div id="phone" class="draggable">
 
     <div class="close"></div>
     <p class="phone-title">Телефон</p>
@@ -107,117 +107,12 @@
     </div>
 </div>
 
-<div id="report">
+<div id="report" class="draggable">
     <div class="close"></div>
     <p class="report-title">Анкета</p>
 
-    <datalist id="q_gender">
-        <option value="Мужчина">
-        <option value="Женщина">
-    </datalist>
-
-    <datalist id="q_age">
-        <option value="до 1 года">
-        <option value="от 1 до 5 лет">
-        <option value="от 6 до 15 лет">
-        <option value="от 16 до 29 лет">
-        <option value="от 30 до 39 лет">
-        <option value="от 40 до 59 лет">
-        <option value="больше 60 лет">
-    </datalist>
-
-    <datalist id="q_region">
-        <option value="Санкт-Петербург">
-        <option value="Ленинградская область">
-        <option value="Псков">
-        <option value="Псковская область">
-    </datalist>
-
-    <datalist id="q_spb">
-        <option value="Адмиралтейский район">
-        <option value="Василеостровский район">
-        <option value="Выборгский район">
-        <option value="Калининский район">
-        <option value="Кировский район">
-        <option value="Колпинский район">
-        <option value="Красногвардейский район">
-        <option value="Красносельский район">
-        <option value="Кронштадтcкий район">
-        <option value="Курортный район">
-        <option value="Московский район">
-        <option value="Невский район">
-        <option value="Петроградский район">
-        <option value="Петродворцовый район">
-        <option value="Приморский район">
-        <option value="Пушкинский район">
-        <option value="Фрунзенский район">
-        <option value="Центральный район">
-    </datalist>
-
-    <datalist id="q_lenobl">
-        <option value="Бокситогорский район">
-        <option value="Волосовский район">
-        <option value="Волховский район">
-        <option value="Всеволожский район">
-        <option value="Выборгский район">
-        <option value="Гатчинский район">
-        <option value="Кингисеппский район">
-        <option value="Киришский район">
-        <option value="Кировский район">
-        <option value="Лодейнопольский район">
-        <option value="Ломоносовский район">
-        <option value="Лужский район">
-        <option value="Подпорожский район">
-        <option value="Приозерский район">
-        <option value="Сланцевский район">
-        <option value="Тихвинский район">
-        <option value="Тосненский район">
-    </datalist>
-
-    <datalist id="q_pskovobl">
-        <option value="Бежаницкий район">
-        <option value="Великолукский район">
-        <option value="Гдовский район">
-        <option value="Дедовичский район">
-        <option value="Дновский район">
-        <option value="Красногородский район">
-        <option value="Куньинский район">
-        <option value="Локнянский район">
-        <option value="Невельский район">
-        <option value="Новоржевский район">
-        <option value="Новосокольнический район">
-        <option value="Опочецкий район">
-        <option value="Островский район">
-        <option value="Палкинский район">
-        <option value="Печорский район">
-        <option value="Плюсский район">
-        <option value="Порховский район">
-        <option value="Псковский район">
-        <option value="Пустошкинский район">
-        <option value="Пушкиногорский район">
-        <option value="Пыталовский район">
-        <option value="Себежский район">
-        <option value="Стругокрасненский район">
-        <option value="Усвятский район">
-    </datalist>
-
-    <datalist id="q_purpose">
-        <option value="Медицинская консультация">
-        <option value="Справочная информация">
-        <option value="Фармацефтическая информация">
-    </datalist>
-
-    <datalist id="q_symptom">
-        <option value="Боль">
-        <option value="Грипп">
-        <option value="Давление">
-        <option value="Лихорадка">
-        <option value="Психиатрия">
-        <option value="Травма">
-        <option value="Другое">
-    </datalist>
-
     <form id="report-form" action="#">
+
         <table>
             <tr>
                 <td class="label"><label>Телефонный номер:</label></td>
@@ -226,38 +121,35 @@
             </tr>
             <tr>
                 <td class="label"><label>Пол:</label></td>
-                <td class="value"><input type="text" name="q_gender" list="q_gender"></td>
+                <td class="value"><input type="text" name="q_gender" autocomplete="off"></td>
                 <td class="result"> </td>
             </tr>
             <tr>
                 <td class="label"><label>Возраст:</label></td>
-                <td class="value"><input type="text" name="q_age" list="q_age"></td>
+                <td class="value"><input type="text" name="q_age" autocomplete="off"></td>
                 <td class="result"> </td>
             </tr>
 
             <tr>
                 <td class="label"><label>Регион:</label></td>
-                <td class="value"><input type="text" name="q_region" list="q_region"></td>
+                <td class="value"><input type="text" name="q_region" autocomplete="off"></td>
                 <td class="result"> </td>
             </tr>
 
             <tr>
                 <td class="label"><label>Район:</label></td>
-                <td class="value"><input type="text" name="q_area" list=""></td>
+                <td class="value"><input type="text" name="q_area" autocomplete="off"></td>
                 <td class="result"> </td>
             </tr>
             <tr>
                 <td class="label"><label>Причина обращения:</label></td>
-                <td class="value"><input type="text" name="q_purpose" list="q_purpose"></td>
+                <td class="value"><input type="text" name="q_purpose" autocomplete="off"></td>
                 <td class="result"> </td>
             </tr>
             <tr>
                 <td class="label"><label>Симптомы:</label></td>
-                <td class="value"><input type="text" name="q_symptom" list="q_symptom"></td>
+                <td class="value"><input type="text" name="q_symptom" autocomplete="off"></td>
                 <td class="result"> </td>
-            </tr>
-            <tr>
-                <td class="button" colspan="3"><button class="medsys">Перейти в Medsys &nbsp&nbsp&nbsp<i class="icon-share-alt"></i></button></td>
             </tr>
         </table>
     </form>

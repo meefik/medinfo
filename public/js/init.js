@@ -139,11 +139,7 @@ $(document).ready(function () {
                 sip_conf = msg.sipconf;
                 forward_list = msg.forward;
                 if (!forward_list) forward_list = [];
-                try {
-                    phoneInit();
-                } catch (err) {
-                    console.warn(err.toString());
-                }
+                phoneInit();
             }, function () {
                 login_form.show();
                 login_username.focus();
@@ -237,18 +233,23 @@ $(document).ready(function () {
     function changeRegion() {
         var region = $('#report-form input[name="q_region"]');
         var area = $('#report-form input[name="q_area"]');
-        area.attr("list", "");
+        var bindAC = function(src) {
+            area.autocomplete({
+                source: src,
+                minLength: 0
+            });
+        }
         if (region.val() === 'Санкт-Петербург') {
-            area.attr("list", "q_spb");
+            bindAC(questionnaire.q_spb);
         }
         if (region.val() === 'Ленинградская область') {
-            area.attr("list", "q_lenobl");
+            bindAC(questionnaire.q_lenobl);
         }
         if (region.val() === 'Псков') {
-            area.attr("list", "q_pskov");
+            bindAC(questionnaire.q_pskov);
         }
         if (region.val() === 'Псковская область') {
-            area.attr("list", "q_pskovobl");
+            bindAC(questionnaire.q_pskovobl);
         }
     }
 
@@ -322,11 +323,16 @@ $(document).ready(function () {
             $(this).find('.sub_navigation').slideToggle(100);
         });
 
-        // Dialer
+        // Draggable
 
-        phone_gui.draggable({
-            containment: $(this).parent()
+        $(".draggable").draggable({
+            containment: $("body"),
+            drag: function() { // hide popup menu if drag
+                $(".ui-autocomplete").hide();
+            }
         });
+
+        // Dialer
 
         phone_call_button.click(function (event) {
             var target = phone_dialed_number_screen.val();
@@ -442,10 +448,6 @@ $(document).ready(function () {
 
         // Report Form
 
-        $("#report").draggable({
-            containment: $(this).parent()
-        });
-
         $("#report .close").click(function () {
             //$("#report-form input").trigger('change');
             // For save last change
@@ -477,6 +479,24 @@ $(document).ready(function () {
             openMedsys();
             return false;
         });
+
+        // Autocomplete
+        $("#report-form input").each(function () {
+            var q_key = $(this).attr("name");
+            var q_value = questionnaire[q_key];
+            if (!q_value) q_value = [];
+            $(this).autocomplete({
+                source: q_value,
+                minLength: 0,
+                change: function(event, ui) {
+                    $(this).trigger("change");
+                }
+            });
+        });
+
+        $("#report-form input").click(function(){
+            $(this).autocomplete('search', $(this).val());
+        })
 
         $('#report-form input[name="q_region"]').change(function () {
             changeRegion();
@@ -541,6 +561,18 @@ $(document).ready(function () {
             $(this).remove();
         });
 
+    }
+
+    var questionnaire = {
+        q_gender: ["Мужчина", "Женщина"],
+        q_age: ["до 1 года", "от 1 до 5 лет", "от 6 до 15 лет", "от 16 до 29 лет", "от 30 до 39 лет", "от 40 до 59 лет", "больше 60 лет"],
+        q_region: ["Санкт-Петербург", "Ленинградская область", "Псков", "Псковская область"],
+        q_spb: ["Адмиралтейский район", "Василеостровский район", "Выборгский район", "Калининский район", "Кировский район", "Колпинский район", "Красногвардейский район", "Красносельский район", "Кронштадтcкий район", "Курортный район", "Московский район", "Невский район", "Петроградский район", "Петродворцовый район", "Приморский район", "Пушкинский район", "Фрунзенский район", "Центральный район"],
+        q_pskov: [],
+        q_lenobl: ["Бокситогорский район", "Волосовский район", "Волховский район", "Всеволожский район", "Выборгский район", "Гатчинский район", "Кингисеппский район", "Киришский район", "Кировский район", "Лодейнопольский район", "Ломоносовский район", "Лужский район", "Подпорожский район", "Приозерский район", "Сланцевский район", "Тихвинский район", "Тосненский район"],
+        q_pskovobl: ["Бежаницкий район", "Великолукский район", "Гдовский район", "Дедовичский район", "Дновский район", "Красногородский район", "Куньинский район", "Локнянский район", "Невельский район", "Новоржевский район", "Новосокольнический район", "Опочецкий район", "Островский район", "Палкинский район", "Печорский район", "Плюсский район", "Порховский район", "Псковский район", "Пустошкинский район", "Пушкиногорский район", "Пыталовский район", "Себежский район", "Стругокрасненский район", "Усвятский район"],
+        q_purpose: ["Медицинская консультация", "Справочная информация", "Фармацефтическая информация"],
+        q_symptom: ["Боль", "Грипп", "Давление", "Лихорадка", "Психиатрия", "Травма", "Другое"]
     }
 
 });
