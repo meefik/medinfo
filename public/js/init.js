@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     function getProfile(done, error) {
         $.ajax({
-            url: "/api/profile"
+            url: "api/profile"
         }).done(function (msg) {
                 if (done) done(msg);
             }).fail(function (msg) {
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     function checkAuth(username, password, done, error) {
         $.ajax({
-            url: "/api/login",
+            url: "api/login",
             type: "POST",
             data: { username: username, password: password }
         }).done(function (msg) {
@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     function logout() {
         $.ajax({
-            url: "/api/logout"
+            url: "api/logout"
         }).done(function (msg) {
                 window.location = "/";
             });
@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     function newReport(callerid, done, error) {
         $.ajax({
-            url: "/api/report",
+            url: "api/report",
             type: "POST",
             data: { callerid: callerid }
         }).done(function (msg) {
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     function updateReport(reportid, q_key, q_value, done, error) {
         $.ajax({
-            url: "/api/report/" + reportid,
+            url: "api/report/" + reportid,
             type: "POST",
             data: { q_key: q_key, q_value: q_value }
         }).done(function (msg) {
@@ -74,7 +74,7 @@ $(document).ready(function () {
 
     function getReport(reportid, done, error) {
         $.ajax({
-            url: "/api/report/" + reportid
+            url: "api/report/" + reportid
         }).done(function (msg) {
                 if (done) return done(msg);
             }).fail(function () {
@@ -84,7 +84,7 @@ $(document).ready(function () {
 
     function getReports(limit, done, error) {
         $.ajax({
-            url: "/api/report?limit="+limit
+            url: "api/report?limit="+limit
         }).done(function (msg) {
                 if (done) return done(msg);
             }).fail(function () {
