@@ -92,22 +92,6 @@ $(document).ready(function () {
             });
     }
 
-    function startMedsys(username, callerid) {
-        $.ajax({
-            url: "http://1220-test.cito.ee/call1.php?user_id=" + username + "&phone_num=" + callerid + "&action=start",
-            crossDomain: true,
-            dataType: 'jsonp'
-        });
-    }
-
-    function endMedsys(username, reportid) {
-        $.ajax({
-            url: "http://1220-test.cito.ee/call1.php?user_id=" + username + "&ext_call_id=" + reportid + "&action=end",
-            crossDomain: true,
-            dataType: 'jsonp'
-        });
-    }
-
     function openMedsys() {
         window.open("http://1220-test.cito.ee/", "medsys");
     }
@@ -258,7 +242,6 @@ $(document).ready(function () {
     answeredEvent = function (callerid, callback) {
         newReport(callerid, function (msg) {
             addReportItem(msg.id, callerid);
-            startMedsys(username, callerid);
             showReportForm(0);
             callback(msg.id);
         });
@@ -266,17 +249,13 @@ $(document).ready(function () {
 
     hangupEvent = function (reportid) {
         if (reportid) {
-            updateReport(reportid, 'hangup', null, function (msg) {
-                endMedsys(username, reportid);
-            });
+            updateReport(reportid, 'hangup', null);
         }
     }
 
     forwardEvent = function(reportid, forwardid) {
         if (reportid) {
-            updateReport(reportid, 'forward', forwardid, function (msg) {
-                endMedsys(username, reportid);
-            });
+            updateReport(reportid, 'forward', forwardid);
         }
     }
 

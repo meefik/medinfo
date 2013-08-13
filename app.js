@@ -41,7 +41,7 @@ app.get('/api/logout', user.logout);
 app.get('/api/profile', user.profile);
 app.post('/api/report', report.add);
 app.get('/api/report', report.get);
-app.post('/api/report/:questId', report.update);
+app.post('/api/report/:reportId', report.update);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
