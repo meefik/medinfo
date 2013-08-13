@@ -93,20 +93,11 @@ ul.sub_navigation li {
 /* Workspace */
 
 #workspace {
-    padding-top: 25px;
+    display: none;
 }
-
 
 
 /* Login Form */
-
-#login-background {
-    position: fixed;
-    z-index: 110;
-    width: 100%;
-    height: 100%;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAMAAAB883U1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRF7+/v7u7u////REBVnAAAAAN0Uk5T//8A18oNQQAAABZJREFUeNpiYGJiYmBiYgRiBhAGCDAAALsAFJhiJ+UAAAAASUVORK5CYII=) white;
-}
 
 #login-box {
     position: absolute;
@@ -580,7 +571,7 @@ ul.sub_navigation li {
     float: left;
     margin-left: 15px;
     width: 350px;
-    padding-top: 20px;
+    padding-top: 45px;
 }
 
 #sessions .session {

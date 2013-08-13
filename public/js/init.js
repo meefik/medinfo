@@ -535,9 +535,9 @@ $(document).ready(function () {
         // Start
         MyPhone.start();
 
-        // Remove login page.
-        $("#login-background").fadeOut(1000, function () {
-            $(this).remove();
+        // Show workspace and remove login page.
+        $("#workspace").fadeIn(1000, function () {
+            $("#login-box").remove();
         });
 
     }
