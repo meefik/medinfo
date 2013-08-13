@@ -449,8 +449,6 @@ $(document).ready(function () {
         // Report Form
 
         $("#report .close").click(function () {
-            // For save last change
-            $("#report-form button.medsys").focus();
             // hide popup menu if close
             $(".ui-autocomplete").hide();
 
