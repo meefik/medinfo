@@ -44,7 +44,7 @@ $(document).ready(function () {
         $.ajax({
             url: "api/logout"
         }).done(function (msg) {
-                window.location = "/";
+                window.location = "./";
             });
     }
 
