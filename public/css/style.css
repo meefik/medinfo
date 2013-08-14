@@ -294,7 +294,7 @@ ul.sub_navigation li {
 #report {
     position: absolute;
     width: 460px;
-    height: 410px;
+    height: 460px;
     padding: 15px;
     left: 50%;
     top: 50%;
@@ -372,9 +372,11 @@ ul.sub_navigation li {
     font-size: 16px;
 }
 
-#report form table td.button {
-    text-align: right;
-    padding: 25px;
+#report form .medsys {
+    height: 35px;
+    width: 262px;
+    font-weight: bold;
+    margin-top: 15px;
 }
 
 

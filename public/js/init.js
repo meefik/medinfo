@@ -92,8 +92,12 @@ $(document).ready(function () {
             });
     }
 
-    function openMedsys() {
-        window.open("http://1220-test.cito.ee/", "medsys");
+    function openMedsys(gender, age) {
+        var medsys_url = "http://1220-test.cito.ee/";
+        if (gender && age)
+            window.open(medsys_url+"?gender="+gender+"&age="+age, "medsys");
+        else
+            window.open(medsys_url, "medsys");
     }
 
     function findReportIndexById(reportid) {
@@ -454,11 +458,6 @@ $(document).ready(function () {
             }
         });
 
-        $("#report-form button.medsys").click(function () {
-            openMedsys();
-            return false;
-        });
-
         // Autocomplete
         $("#report-form input").each(function () {
             var q_key = $(this).attr("name");
@@ -479,6 +478,13 @@ $(document).ready(function () {
 
         $('#report-form input[name="q_region"]').change(function () {
             changeRegion();
+        });
+
+        $("#report-form .medsys").click(function(){
+            var q_gender = $("#report-form input[name='q_gender']").val();
+            var q_age = $("#report-form input[name='q_age']").val();
+            openMedsys(q_gender, q_age);
+            return false;
         });
 
 
