@@ -214,7 +214,7 @@ window.GUI = {
         chat_input.blur(function (e) {
             if ($(this).val() == "") {
                 $(this).addClass("inactive");
-                $(this).val("type to chat...");
+                $(this).val("введите сообщение...");
             }
         });
 
@@ -343,6 +343,18 @@ window.GUI = {
                 call.removeClass();
                 call.addClass("call answered");
                 status_text.text(description || "вызов принят");
+
+                // Start timer
+                var time = 0;
+                var timer = setInterval(function () {
+                    time++;
+                    var seconds = time % 60;
+                    var minutes = time / 60 | 0;
+                    if (seconds < 10) seconds = "0"+seconds;
+                    status_text.text(minutes+":"+seconds);
+                }, 1000);
+                status_text.attr("data-timer",timer);
+
                 button_dtmf.click(function () {
                     forward_box.hide();
                     dtmf_box.toggle();
@@ -386,6 +398,10 @@ window.GUI = {
                     // Global hangup event
                     hangupEvent(reportid);
                 }
+                // Stop timer
+                var timer = status_text.attr("data-timer");
+                clearInterval(timer);
+
                 call.removeClass();
                 call.addClass("call terminated");
                 status_text.text(description || "вызов завершен");
@@ -460,7 +476,7 @@ window.GUI = {
         $(chatting).removeClass("inactive");
 
         if (who != "error") {
-            var who_text = ( who == "me" ? "me" : $(session).find(".peer > .display-name").text() );
+            var who_text = ( who == "me" ? "я" : $(session).find(".peer > .display-name").text() );
             var message_div = $('<p class="' + who + '"><b>' + who_text + '</b>: ' + text + '</p>');
         }
         // ERROR sending the MESSAGE.

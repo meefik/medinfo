@@ -597,7 +597,7 @@ ul.sub_navigation li {
     position: relative;
     float: left;
     margin-left: 15px;
-    width: 350px;
+    width: 380px;
     padding-top: 45px;
 }
 
@@ -636,12 +636,12 @@ ul.sub_navigation li {
 }
 
 #sessions .session .peer span {
-    font-size: 12px;
+    font-size: 14px;
     color: #555;
 }
 
 #sessions .session .peer span.display-name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
     margin-right: 5px;
@@ -699,23 +699,23 @@ ul.sub_navigation li {
 }
 
 #sessions .session .container > .call .dtmf-box > div.dtmf-row {
-    width: 90px;
+    width: 105px;
 }
 
 #sessions .session .container > .call .dtmf-box > div.dtmf-row > div.dtmf-button {
     float: left;
-    width: 30px;
-    height: 25px;
-    line-height: 25px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
     text-align: center;
-    font-size: 15px;
+    font-size: 22px;
     font-weight: bold;
     color: #FFF;
     cursor: pointer;
 }
 
 #sessions .session .container > .call .dtmf-box div.dtmf-row div.dtmf-button:hover {
-    color: #FC417A;
+    color: #fcefa1;
     background: black;
 }
 
@@ -736,25 +736,25 @@ ul.sub_navigation li {
 
 #sessions .session .container > .call .forward-box > div.forward-row {
     padding: 5px 10px 5px 10px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     color: #FFF;
     cursor: pointer;
 }
 
 #sessions .session .container > .call .forward-box > div.forward-row:hover {
-    color: #FC417A;
+    color: #fcefa1;
     background: black;
 }
 
 #sessions .session .container > .call .call-status {
     float: left;
     /* width: 144px; Uncomment when hold/resume is useful */
-    width: 190px;
+    width: 220px;
     height: 24px;
     padding-top: 8px;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     _overflow: hidden;
 }
