@@ -363,6 +363,7 @@ window.GUI = {
                     dtmf_box.hide();
                     forward_box.toggle();
                 });
+                forward_box.html('');
                 for (var i = 0; i < forward_list.length; i++) {
                     forward_box.append('<div class="forward-row" data-forward-number="'+
                         forward_list[i].phone+'">'+forward_list[i].name+'</div>');
