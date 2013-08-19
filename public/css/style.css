@@ -645,6 +645,7 @@ ul.sub_navigation li {
     font-weight: bold;
     color: #333;
     margin-right: 5px;
+    letter-spacing: 1px;
 }
 
 #sessions .session .container > .call {
