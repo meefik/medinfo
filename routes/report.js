@@ -28,6 +28,33 @@ function endMedsys(username, reportid) {
     http.request(options, callback).end();
 }
 
+function dataMedsys(username, q_key, q_value) {
+    var key, value;
+    if (q_key === "q_gender") {
+        var q_gender = ["", "Мужчина", "Женщина"];
+        key = "gender";
+        value = q_gender.indexOf(q_value);
+    }
+    if (q_key === "q_age") {
+        var q_age = ["", "до 1 года", "от 1 до 5 лет", "от 6 до 15 лет", "от 16 до 29 лет", "от 30 до 39 лет", "от 40 до 59 лет", "больше 60 лет"];
+        key = "age";
+        value = q_age.indexOf(q_value);
+    }
+    if (typeof key === 'undefined' || typeof value === 'undefined') {
+        return;
+    }
+    var options = {
+        host: '1220-test.cito.ee',
+        port: 80,
+        path: 'call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data',
+        method: 'GET'
+    }
+    var callback = function(response) {
+        console.log("dataMedsys");
+    }
+    http.request(options, callback).end();
+}
+
 exports.add = function (req, res) {
     if (!req.session.username) {
         return res.send(401, "Unauthorized");
@@ -93,6 +120,7 @@ exports.update = function (req, res) {
                 }
             }
         );
+        dataMedsys(req.session.username, req.body.q_key, req.body.q_value);
     }
 }
 
