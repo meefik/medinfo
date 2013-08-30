@@ -9,7 +9,7 @@ var express = require('express')
     , http = require('http')
     , path = require('path')
     , MySQLStore = require('connect-mysql')(express)
-    , db = require('./db.js').db();
+    , db = require('./db.js').pool();
 
 var app = express();
 

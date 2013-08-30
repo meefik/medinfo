@@ -1,19 +1,22 @@
-var db = require('../db.js').db();
+var pool = require('../db.js').pool();
 
 exports.login = function (req, res) {
     if (req.body.username && req.body.password) {
-        db.query('SELECT * FROM users WHERE username=? AND password=MD5(?)',
-            [req.body.username, req.body.password],
-            function (err, rows) {
-                if (!err && rows && rows.length > 0) {
-                    req.session.username = rows[0].username;
-                    req.session.sipconf = JSON.parse(rows[0].sipconf);
-                    req.session.forward = JSON.parse(rows[0].forward);
-                    res.send(200, "OK");
-                } else {
-                    res.send(403, "Forbidden");
-                }
-            });
+        pool.getConnection(function(err, connection) {
+            connection.query('SELECT * FROM users WHERE username=? AND password=MD5(?)',
+                [req.body.username, req.body.password],
+                function (err, rows) {
+                    if (!err && rows && rows.length > 0) {
+                        req.session.username = rows[0].username;
+                        req.session.sipconf = JSON.parse(rows[0].sipconf);
+                        req.session.forward = JSON.parse(rows[0].forward);
+                        res.send(200, "OK");
+                    } else {
+                        res.send(403, "Forbidden");
+                    }
+                    connection.end();
+                });
+        });
     } else {
         res.send(400, "Bad Request");
     }
