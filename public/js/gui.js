@@ -419,6 +419,8 @@ window.GUI = {
                 soundPlayer.play();
 
                 button_dial.click(function () {
+                    call.removeClass();
+                    call.addClass("call trying");
                     session.call.answer({
                         mediaConstraints: { audio: true, video: false }
                     });
