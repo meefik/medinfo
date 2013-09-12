@@ -19,7 +19,7 @@ function endMedsys(username, reportid) {
     var options = {
         host: '1220-test.cito.ee',
         port: 80,
-        path: 'call1.php?user_id=' + username + '&ext_call_id=' + reportid + '&action=end',
+        path: '/call1.php?user_id=' + username + '&ext_call_id=' + reportid + '&action=end',
         method: 'GET'
     }
     var callback = function(response) {
@@ -46,11 +46,11 @@ function dataMedsys(username, q_key, q_value) {
     var options = {
         host: '1220-test.cito.ee',
         port: 80,
-        path: 'call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data',
+        path: '/call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data',
         method: 'GET'
     }
     var callback = function(response) {
-        console.log("dataMedsys");
+        console.log('dataMedsys: http://1220-test.cito.ee/call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data');
     }
     http.request(options, callback).end();
 }
