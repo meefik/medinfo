@@ -597,7 +597,7 @@ ul.sub_navigation li {
     position: relative;
     float: left;
     margin-left: 15px;
-    width: 390px;
+    width: 400px;
     padding-top: 45px;
 }
 
@@ -751,7 +751,7 @@ ul.sub_navigation li {
 #sessions .session .container > .call .call-status {
     float: left;
     /* width: 144px; Uncomment when hold/resume is useful */
-    width: 230px;
+    width: 240px;
     height: 24px;
     padding-top: 8px;
     text-align: center;
