@@ -333,7 +333,7 @@ window.GUI = {
 
             case "answered":
                 // If answered after incoming
-                if ($(session).find(".incoming").length > 0) {
+                if ($(session).find(".trying").length > 0) {
                     // Global answered event
                     answeredEvent(caller_name.text(), function(reportid) {
                         $(session).attr("data-reportid", reportid);
