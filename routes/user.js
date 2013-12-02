@@ -14,7 +14,7 @@ exports.login = function (req, res) {
                     } else {
                         res.send(403, "Forbidden");
                     }
-                    connection.end();
+                    connection.release();
                 });
         });
     } else {

@@ -3,27 +3,29 @@ var mysql = require('mysql');
 var http = require('http');
 
 function startMedsys(username, callerid) {
+    var url = '/call1.php?user_id=' + username + '&phone_num=' + callerid + '&action=start';
     var options = {
         host: '1220-test.cito.ee',
         port: 80,
-        path: '/call1.php?user_id=' + username + '&phone_num=' + callerid + '&action=start',
+        path: url,
         method: 'GET'
     }
     var callback = function(response) {
-        console.log("startMedsys");
+        console.log("startMedsys ["+response.statusCode+"]: "+url);
     }
     http.request(options, callback).end();
 }
 
 function endMedsys(username, reportid) {
+    var url = '/call1.php?user_id=' + username + '&ext_call_id=' + reportid + '&action=end';
     var options = {
         host: '1220-test.cito.ee',
         port: 80,
-        path: '/call1.php?user_id=' + username + '&ext_call_id=' + reportid + '&action=end',
+        path: url,
         method: 'GET'
     }
     var callback = function(response) {
-        console.log("endMedsys");
+        console.log("endMedsys ["+response.statusCode+"]: "+url);
     }
     http.request(options, callback).end();
 }
@@ -43,14 +45,15 @@ function dataMedsys(username, q_key, q_value) {
     if (typeof key === 'undefined' || typeof value === 'undefined') {
         return;
     }
+    var url = '/call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data';
     var options = {
         host: '1220-test.cito.ee',
         port: 80,
-        path: '/call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data',
+        path: url,
         method: 'GET'
     }
     var callback = function(response) {
-        console.log('dataMedsys: http://1220-test.cito.ee/call1.php?user_id=' + username + '&' + key + '=' + value + '&action=data');
+        console.log("dataMedsys ["+response.statusCode+"]: "+url);
     }
     http.request(options, callback).end();
 }
@@ -73,7 +76,7 @@ exports.add = function (req, res) {
                     res.send(406, "Not Acceptable");
                     console.log(err);
                 }
-                connection.end();
+                connection.release();
             });
     });
 }
@@ -109,7 +112,7 @@ exports.update = function (req, res) {
                         res.send(406, "Not Acceptable");
                         console.log(err);
                     }
-                    connection.end();
+                    connection.release();
                 }
             );
         });
@@ -125,7 +128,7 @@ exports.update = function (req, res) {
                         res.send(406, "Not Acceptable");
                         console.log(err);
                     }
-                    connection.end();
+                    connection.release();
                 }
             );
         });
@@ -148,7 +151,7 @@ exports.get = function (req, res) {
                 } else {
                     res.send(403, "Forbidden");
                 }
-                connection.end();
+                connection.release();
             });
     });
 }
