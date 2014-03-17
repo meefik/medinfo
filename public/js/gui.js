@@ -340,6 +340,10 @@ window.GUI = {
                     });
                 }
 
+                // Clear Ring Timer
+                var ringTimer = status_text.attr("data-ring-timer");
+                clearInterval(ringTimer);
+
                 call.removeClass();
                 call.addClass("call answered");
                 status_text.text(description || "вызов принят");
@@ -399,6 +403,11 @@ window.GUI = {
                     // Global hangup event
                     hangupEvent(reportid);
                 }
+
+                // Clear Ring Timer
+                var ringTimer = status_text.attr("data-ring-timer");
+                clearInterval(ringTimer);
+
                 // Stop timer
                 var timer = status_text.attr("data-timer");
                 clearInterval(timer);
@@ -415,8 +424,14 @@ window.GUI = {
                 call.removeClass();
                 call.addClass("call incoming");
                 status_text.text(description || "входящий вызов...");
-                soundPlayer.setAttribute("src", "sounds/incoming-call2.ogg");
-                soundPlayer.play();
+
+                // Set Ring Timer
+                var ringTimer = setInterval(function(){
+                    // ring-back.
+                    soundPlayer.setAttribute("src", "sounds/incoming-call2.ogg");
+                    soundPlayer.play();
+                }, 5000);
+                status_text.attr("data-ring-timer",ringTimer);
 
                 button_dial.click(function () {
                     call.removeClass();
